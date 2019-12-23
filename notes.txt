@@ -25,35 +25,37 @@ Loading Libraries, token (from .env), and activating bot
 require('dotenv').config(); //load dotenv library so we can get token from .env
 const Discord = require('discord.js'); //load discord library
 const bot = new Discord.Client(); //create bot object
-const TOKEN = process.env.TOKEN; //get token value from .env file
+bot.commands = new Discord.Collection(); //load command library for the bot object
+const botCommands = require('./commands'); //set requirement: commands must be called to be activated
 
-bot.login(TOKEN); //activate bot with token value
+Object.keys(botCommands).map(key => { //map command call to a call key ('!', '.', '/', etc)
+    bot.commands.set(botCommands[key].name, botCommands[key]);
+});
 
 
-=======================
-Connecting to Bot
-=======================
+==============
+Activating Bot
+==============
 bot.on('ready', () => { //ready event is fired once we're connected to bot
     console.info(`Logged in as ${bot.user.tag}!`); //if we've token is authenticated, login info is displayed
 });
 
 
 
-=======================
-Message Event Handeling
-=======================
-bot.on('message', msg => { //message event looks at each message in connected server for case sensitive matches
-    if (msg.content === 'ping') { //if anyone types 'ping' into chat
-        msg.reply('pong'); //tags the initial user who sent 'ping'
-        msg.channel.send('pong'); //send a message in the channel without tagging a user
-    } 
-    else if (msg.content.startsWith('!kick')) { //if anyone enter a !kick command
-        if (msg.mentions.users.size) { //if existing users were tagged in the message
-            const taggedUser = msg.mentions.users.first(); //select the first user that match the tag
-            msg.channel.send(`You wanted to kick: ${taggedUser.username}`); //reply to the channel
-        }
-        else { //if entered user does not exist within the channel
-            msg.reply('Please tag a valid user!'); //respong to the user who input the original command with an error message
-        }
+===================================
+Message Event Handeling w/ Commands
+===================================
+bot.on('message', msg => {
+    const args = msg.content.split(/ +/); //try to split the input message. Assume the first item in this args array is our command.
+    const command = args.shift().toLowerCase(); //change all characters in the input command to lower case
+    console.info(`Called command: ${command}`); //call the command
+
+    if (!bot.commands.has(command)) return; //if the command does not exist, report error and return
+
+    try { //if command exists
+        bot.commands.get(command).execute(msg, args); //try to execute the command
+    } catch (error) { //if an error occurs while executing the given command
+        console.error(error); //report the error in the console
+        msg.reply('there was an error trying to execute that command!'); //reply to the user (in the channel w/ @) that an error has occured
     }
 });
