@@ -7,6 +7,8 @@ Project Dependencies (install each into project enviornment):
 
 	-discord.js: npm install discord
 
+    -youtube.js: npm install --save discord-youtube-api
+
 
 Start bot from terminal:
 	node index.js
