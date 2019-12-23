@@ -41,7 +41,6 @@ bot.on('ready', () => { //ready event is fired once we're connected to bot
 });
 
 
-
 ===================================
 Message Event Handeling w/ Commands
 ===================================
@@ -59,3 +58,13 @@ bot.on('message', msg => {
         msg.reply('there was an error trying to execute that command!'); //reply to the user (in the channel w/ @) that an error has occured
     }
 });
+
+
+===============================
+Sending Messages In Server Chat
+===============================
+    -Replying to users who initally typed a message
+        msg.reply('there was an error trying to execute that command!');
+        
+    -Sending a message in the channel without mentioning any user
+        msg.channel.send('pong');

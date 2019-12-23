@@ -23,11 +23,9 @@ bot.on('message', msg => {
     console.info(`Called command: ${command}`); //log in console that a command was called
 
     if (!command.startsWith(prefix)) return; //check entered message is a command or a normal message (if message starts with prefex)
-    console.info(`w/ prefix: ${command}`);
     command = command.substr(1); //if the user entered the prefix, remove said prefix to check if command exists
-    console.info(`w/out prefix: ${command}`);
     if (!bot.commands.has(command)){
-        console.info('enter an actual command, bitch')
+        msg.channel.send('enter an actual command, bitch')
         return; //if the command does not exist, report error and return
     }
 
