@@ -19,7 +19,7 @@ bot.on('ready', () => { //ready event is fired once we're connected to bot
 
 bot.on('message', msg => {
     const args = msg.content.split(/ +/); //try to split the input message. Assume the first item in this args array is our command.
-    const command = args.shift().toLowerCase(); //change all characters in the input command to lower case and set command to variable
+    var command = args.shift().toLowerCase(); //change all characters in the input command to lower case and set command to variable
     console.info(`Called command: ${command}`); //log in console that a command was called
 
     if (!command.startsWith(prefix)) return; //check entered message is a command or a normal message (if message starts with prefex)
