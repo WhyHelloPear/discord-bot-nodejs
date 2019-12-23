@@ -1,12 +1,12 @@
-require('dotenv').config();
-const Discord = require('discord.js');
-const bot = new Discord.Client();
-const TOKEN = process.env.TOKEN;
+require('dotenv').config(); //load dotenv library so we can get token from .env
+const Discord = require('discord.js'); //load discord library
+const bot = new Discord.Client(); //create bot object
+const TOKEN = process.env.TOKEN; //get token value from .env file
 
-bot.login(TOKEN);
+bot.login(TOKEN); //run bot with token value
 
-bot.on('ready', () => {
-    console.info(`Logged in as ${bot.user.tag}!`);
+bot.on('ready', () => { //ready event is fired once we're connected to bot
+    console.info(`Logged in as ${bot.user.tag}!`); //if we've token is authenticated, login info is displayed
 });
 
 bot.on('message', msg => {

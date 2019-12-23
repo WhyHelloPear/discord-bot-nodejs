@@ -1,0 +1,13 @@
+**All commands should be used in windows terminal with the Node.js package installed.**
+
+Project Dependencies (install each into project enviornment):
+	-Node.js
+
+	-dotenv.js: npm install dotenv.js
+
+	-discord.js: npm install discord.js
+
+
+Start bot from terminal:
+	node index.js
+
