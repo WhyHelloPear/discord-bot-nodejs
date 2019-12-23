@@ -14,7 +14,7 @@
     "dotenv": "^8.2.0"
   },
   "scripts": {
-  "start": "node bot.js"
+  "start": "node index.js"
   }
 
 }
