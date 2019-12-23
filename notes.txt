@@ -9,6 +9,10 @@ Project Dependencies (install each into project enviornment):
 
     -youtube.js: npm install --save discord-youtube-api
 
+    -ffmpeg: npm install discordjs/discord.js discordjs/Commando ffmpeg-static node-opus simple-youtube-api ytdl-core
+
+    -yarn: yarn add discordjs/discord.js discordjs/Commando ffmpeg-static node-opus simple-youtube-api ytdl-core
+
 
 Start bot from terminal:
 	node index.js
