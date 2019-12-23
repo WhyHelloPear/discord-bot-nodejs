@@ -9,16 +9,17 @@ bot.on('ready', () => { //ready event is fired once we're connected to bot
     console.info(`Logged in as ${bot.user.tag}!`); //if we've token is authenticated, login info is displayed
 });
 
-bot.on('message', msg => {
-    if (msg.content === 'ping') {
-        msg.reply('pong');
-        msg.channel.send('pong');
-
-    } else if (msg.content.startsWith('!kick')) {
-        if (msg.mentions.users.size) {
-            const taggedUser = msg.mentions.users.first();
-            msg.channel.send(`You wanted to kick: ${taggedUser.username}`);
-        } else {
+bot.on('message', msg => { //message event looks at each message in connected server for case sensitive matches
+    if (msg.content === 'ping') { //if anyone types 'ping' into chat
+        msg.reply('pong'); //tags the initial user who sent 'ping'
+        msg.channel.send('pong'); //send a message in the channel without tagging a user
+    } 
+    else if (msg.content.startsWith('!kick')) { //if anyone enter a !kick command
+        if (msg.mentions.users.size) { //if existing users were tagged in the message
+            const taggedUser = msg.mentions.users.first(); //select the first mentioned user
+            msg.channel.send(`You wanted to kick: ${taggedUser.username}`); //reply to the channel
+        }
+        else {
             msg.reply('Please tag a valid user!');
         }
     }
