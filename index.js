@@ -16,11 +16,11 @@ bot.on('message', msg => { //message event looks at each message in connected se
     } 
     else if (msg.content.startsWith('!kick')) { //if anyone enter a !kick command
         if (msg.mentions.users.size) { //if existing users were tagged in the message
-            const taggedUser = msg.mentions.users.first(); //select the first mentioned user
+            const taggedUser = msg.mentions.users.first(); //select the first user that match the tag
             msg.channel.send(`You wanted to kick: ${taggedUser.username}`); //reply to the channel
         }
-        else {
-            msg.reply('Please tag a valid user!');
+        else { //if entered user does not exist within the channel
+            msg.reply('Please tag a valid user!'); //respong to the user who input the original command with an error message
         }
     }
 });
