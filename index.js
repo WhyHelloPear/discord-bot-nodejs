@@ -3,19 +3,21 @@ const Discord = require('discord.js'); //load discord library
 const bot = new Discord.Client(); //create bot object
 bot.commands = new Discord.Collection(); //load command library for the bot object
 const botCommands = require('./commands'); //set requirement: commands must be called to be activated
-
 Object.keys(botCommands).map(key => { //map command call to a call key ('!', '.', '/', etc)
   bot.commands.set(botCommands[key].name, botCommands[key]);
 });
+
 
 const prefix = ".";
 const TOKEN = process.env.TOKEN; //get token value from .env file
 
 bot.login(TOKEN);//activate bot with token value
 
+
 bot.on('ready', () => { //ready event is fired once we're connected to bot
   console.info(`Logged in as ${bot.user.tag}!`); //if we've token is authenticated, login info is displayed
 });
+
 
 bot.on('message', msg => {
   const args = msg.content.split(/ +/); //try to split the input message. Assume the first item in this args array is our command.
