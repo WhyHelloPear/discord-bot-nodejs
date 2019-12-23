@@ -24,7 +24,7 @@ bot.on('message', msg => {
     if (!bot.commands.has(command)) return; //if the command does not exist, report error and return
 
     try { //if command exists
-        bot.commands.get(command).execute(msg, args); //try to execute the command
+        bot.commands.get(command).execute(msg, args); //use get() w/ command to execute it with the input parameters msg and args.
     } catch (error) { //if an error occurs while executing the given command
         console.error(error); //report the error in the console
         msg.reply('there was an error trying to execute that command!'); //reply to the user (in the channel w/ @) that an error has occured
