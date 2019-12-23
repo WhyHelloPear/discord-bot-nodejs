@@ -26,7 +26,10 @@ bot.on('message', msg => {
     console.info(`w/ prefix: ${command}`);
     command = command.substr(1); //if the user entered the prefix, remove said prefix to check if command exists
     console.info(`w/out prefix: ${command}`);
-    if (!bot.commands.has(command)) return; //if the command does not exist, report error and return
+    if (!bot.commands.has(command)){
+        console.info('enter an actual command, bitch')
+        return; //if the command does not exist, report error and return
+    }
 
     try { //if command exists
         bot.commands.get(command).execute(msg, args); //use get() w/ command to execute it with the input parameters msg and args.
