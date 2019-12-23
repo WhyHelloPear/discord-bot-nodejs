@@ -8,6 +8,7 @@ Object.keys(botCommands).map(key => { //map command call to a call key ('!', '.'
     bot.commands.set(botCommands[key].name, botCommands[key]);
 });
 
+const prefix = ".";
 const TOKEN = process.env.TOKEN; //get token value from .env file
 
 bot.login(TOKEN);//activate bot with token value
@@ -21,6 +22,8 @@ bot.on('message', msg => {
     const command = args.shift().toLowerCase(); //change all characters in the input command to lower case
     console.info(`Called command: ${command}`); //call the command
 
+    if (!message.content.startsWith(prefix)) return; //check entered message is a command or a normal message (if message starts with prefex)
+    message.content = message.content.substr(1); //if the user entered the prefix, remove said prefix to check if command exists
     if (!bot.commands.has(command)) return; //if the command does not exist, report error and return
 
     try { //if command exists

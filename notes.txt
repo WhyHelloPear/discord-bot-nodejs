@@ -3,9 +3,9 @@
 Project Dependencies (install each into project enviornment):
 	-Node.js
 
-	-dotenv.js: npm install dotenv.js
+	-dotenv.js: npm install dotenv
 
-	-discord.js: npm install discord.js
+	-discord.js: npm install discord
 
 
 Start bot from terminal:
